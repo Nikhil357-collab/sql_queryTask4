@@ -1,0 +1,24 @@
+
+use intern_training_db;
+
+SELECT * FROM students
+ORDER BY name;
+
+SELECT name, age, email FROM students ORDER BY age DESC;
+
+ SELECT * FROM students ORDER BY name ASC, age DESC;
+ #(alphabetical by name, then oldest first)
+
+SELECT name, age, email, RANK() OVER (ORDER BY age DESC) AS age_rank 
+FROM students
+ORDER BY age_rank 
+LIMIT 10;
+
+#Filter adults, top 5 oldest: 
+SELECT * FROM students WHERE age >= 18 ORDER BY age DESC LIMIT 2;
+SELECT * FROM students ORDER BY name ASC LIMIT 10 OFFSET 10;
+
+
+CREATE INDEX idx_age_name ON students(age DESC, name);
+
+
